@@ -1,0 +1,107 @@
+C:\Users\LXYko\Personal Projects\Kubernates beginner\VOTING-APP>kubectl logs voting-app-pod
+[2025-01-05 05:13:51 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2025-01-05 05:13:51 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[2025-01-05 05:13:51 +0000] [1] [INFO] Using worker: sync
+[2025-01-05 05:13:51 +0000] [6] [INFO] Booting worker with pid: 6
+[2025-01-05 05:13:51 +0000] [7] [INFO] Booting worker with pid: 7
+[2025-01-05 05:13:52 +0000] [8] [INFO] Booting worker with pid: 8
+[2025-01-05 05:13:52 +0000] [9] [INFO] Booting worker with pid: 9
+
+C:\Users\LXYko\Personal Projects\Kubernates beginner\VOTING-APP>kubectl logs voting-app-pod
+[2025-01-05 05:13:51 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2025-01-05 05:13:51 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[2025-01-05 05:13:51 +0000] [1] [INFO] Using worker: sync
+[2025-01-05 05:13:51 +0000] [6] [INFO] Booting worker with pid: 6
+[2025-01-05 05:13:51 +0000] [7] [INFO] Booting worker with pid: 7
+[2025-01-05 05:13:52 +0000] [8] [INFO] Booting worker with pid: 8
+[2025-01-05 05:13:52 +0000] [9] [INFO] Booting worker with pid: 9
+10.244.0.1 - - [05/Jan/2025:05:15:22 +0000] "GET / HTTP/1.1" 200 1287 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+10.244.0.1 - - [05/Jan/2025:05:15:22 +0000] "GET /static/stylesheets/style.css HTTP/1.1" 304 0 "http://192.168.59.102:30004/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+C:\Users\LXYko\Personal Projects\Kubernates beginner\VOTING-APP>kubectl logs voting-app-pod
+[2025-01-05 05:13:51 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[2025-01-05 05:13:51 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[2025-01-05 05:13:51 +0000] [1] [INFO] Using worker: sync
+[2025-01-05 05:13:51 +0000] [6] [INFO] Booting worker with pid: 6
+[2025-01-05 05:13:51 +0000] [7] [INFO] Booting worker with pid: 7
+[2025-01-05 05:13:52 +0000] [8] [INFO] Booting worker with pid: 8
+[2025-01-05 05:13:52 +0000] [9] [INFO] Booting worker with pid: 9
+10.244.0.1 - - [05/Jan/2025:05:15:22 +0000] "GET / HTTP/1.1" 200 1287 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+10.244.0.1 - - [05/Jan/2025:05:15:22 +0000] "GET /static/stylesheets/style.css HTTP/1.1" 304 0 "http://192.168.59.102:30004/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+[2025-01-05 05:15:31,229] INFO in app: Received vote for a
+[2025-01-05 05:15:31 +0000] [7] [INFO] Received vote for a
+[2025-01-05 05:15:31,247] ERROR in app: Exception on / [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 598, in connect
+    sock = self.retry.call_with_retry(
+  File "/usr/local/lib/python3.9/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 599, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 664, in _connect
+    raise err
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 652, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/app.py", line 37, in hello
+    redis.rpush('votes', data)
+  File "/usr/local/lib/python3.9/site-packages/redis/commands/core.py", line 2713, in rpush
+    return self.execute_command("RPUSH", name, *values)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 1389, in get_connection
+    connection.connect()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 604, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to redis:6379. Connection refused.
+[2025-01-05 05:15:31 +0000] [7] [ERROR] Exception on / [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 598, in connect
+    sock = self.retry.call_with_retry(
+  File "/usr/local/lib/python3.9/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 599, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 664, in _connect
+    raise err
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 652, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/app.py", line 37, in hello
+    redis.rpush('votes', data)
+  File "/usr/local/lib/python3.9/site-packages/redis/commands/core.py", line 2713, in rpush
+    return self.execute_command("RPUSH", name, *values)
+  File "/usr/local/lib/python3.9/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 1389, in get_connection
+    connection.connect()
+  File "/usr/local/lib/python3.9/site-packages/redis/connection.py", line 604, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to redis:6379. Connection refused.
+10.244.0.1 - - [05/Jan/2025:05:15:31 +0000] "POST / HTTP/1.1" 500 265 "http://192.168.59.102:30004/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+C:\Users\LXYko\Personal Projects\Kubernates beginner\VOTING-APP>
